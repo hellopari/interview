@@ -1,2 +1,2 @@
 # interview
-save some temp file for interview
+Keep temporary documents for interviews
