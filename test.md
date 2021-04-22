@@ -57,8 +57,7 @@ console.log('ok?', temp===aUrl);
 ```
 
 ### 调试
-- 这个页面只有携带正确的参数才能正常显示内容，尝试通过调试获取访问此页面正确的参数
-地址：https://dzkandian.github.io/interview/ant-debug.html
+- 这个页面只有携带正确的参数才能正常显示内容，尝试通过调试获取访问此页面正确的参数。地址：https://dzkandian.github.io/interview/ant-debug.html
 
 ### 特定需求实现
 - TODO
