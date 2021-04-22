@@ -23,6 +23,15 @@ let tool = {
         }
         return e;
     },
+    getvKMap (t) {
+        let e = {}, i = t % (this.cStr.length-1) + 1;
+        for(let r = 0,o=this.cStr; r < o.length; r++) {
+            let a = o[r],s= r + i, c = s >= o.length ? o[s - o.length] : o[s];
+            e[a] = c;
+          
+        }
+        return e;
+    },
     encrypt (url) {
         let tmp = url.split('?',2);
         let domain = tmp[0].split('/')[2];
@@ -39,8 +48,24 @@ let tool = {
         return [tmp[0],np.join('&')].join('?');
     },
     decrypt (url) {
-        // TODO 实现解密方法
-        return null;
+        let tmp = url.split('?',2);
+        let domain = tmp[0].split('/')[2];
+        let params = tmp[1].split('&');
+        let t = this.calMixOffset(domain);
+        let kvMap = this.getvKMap(t);
+        let np = [];
+        for(let i=0;i<params.length;i++){
+            let vk=params[i].split('='),k='',v='';
+            for(let i=0;vk[0]&&i<vk[0].length;i++) {
+                v+=kvMap[vk[0][i]]
+            };
+            for(let i=0;vk[1]&&i<vk[1].length;i++) {
+
+                k+=kvMap[vk[1][i]]
+            };
+            np.push([k,v].join('='));
+        }
+        return [tmp[0],np.join('&')].join('?');
     }
 };
 let aUrl = 'https://example.com?username=uell&age=23&address=%E5%B9%BF%E4%B8%9C%E7%9C%81%E5%B9%BF%E5%B7%9E%E5%B8%82%E7%99%BD%E4%BA%91%E5%8C%BA';
